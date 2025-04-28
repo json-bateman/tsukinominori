@@ -15,7 +15,7 @@
 html,
 body {
   height: 100%;
-  background-color: hsl(217, 95%, 23%);
+  background-color: #000000;
   position: relative;
   z-index: -2;
 }
@@ -290,8 +290,28 @@ table {
   font-size: 40px;
 }
 
+.cafe-menu {
+  margin-top: 24px;
+  display: flex;
+  justify-content: center;
+}
+
+.menu-col {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 440px;
+  flex-grow: 1;
+}
+
 .menu-subtitle {
-  font-size: 42px;
+  font-size: 32px;
+  border-bottom: 1px solid white;
+  margin-bottom: 16px;
+}
+
+.mt-4 {
+  margin-top: 16px;
 }
 
 .section {
@@ -302,11 +322,14 @@ table {
 .menu-item {
   display: flex;
   justify-content: space-between;
-  width: 360px;
-  font-size: 24px;
+  font-size: 20px;
 }
 
 .english-item {
   font-size: 20px;
   margin-bottom: 16px;
+}
+
+.円 {
+  font-size: 20px;
 }
