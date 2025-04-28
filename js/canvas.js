@@ -145,7 +145,8 @@ const setMoonRotation = deg => {
 }
 
 const today = new Date()
-setMoonRotation(getMoonPhaseRotation(new Date(today)))
+const test = new Date("2025-04-29")
+setMoonRotation(getMoonPhaseRotation(new Date(test)))
 
 // initialize
 resizeCanvas();

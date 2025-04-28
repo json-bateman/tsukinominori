@@ -333,3 +333,9 @@ table {
 .円 {
   font-size: 20px;
 }
+
+.plus {
+  font-weight: 500;
+  font-size: 24px;
+  color: pink;
+}
