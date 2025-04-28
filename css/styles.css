@@ -1,6 +1,5 @@
 /* Josh Comeaus simple CSS reset combined with Kevin-Powell's reset */
 
-
 /* Use a more-intuitive box-sizing model */
 *,
 *::before,
@@ -16,6 +15,9 @@
 html,
 body {
   height: 100%;
+  background-color: hsl(217, 95%, 23%);
+  position: relative;
+  z-index: -2;
 }
 
 body {
@@ -115,20 +117,40 @@ table {
 }
 
 
+/* ~~~~~~~~~~~~~~ */
 /* Custom styling */
+/* ~~~~~~~~~~~~~~ */
+
+#main-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
 
 #title-container {
   width: 100%;
   height: 100%;
   display: flex;
+  gap: 16px;
   justify-content: center;
   align-items: center;
 }
 
 .title {
-  font-size: 72px;
+  font-size: 90px;
   color: white;
   font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+#instagram {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 12px;
+}
+
+#instagram:hover {
+  color: yellow;
 }
 
 #starfield {
@@ -140,4 +162,151 @@ table {
   left: 0;
   width: 100%;
   height: 100%;
+}
+
+/* Moon related CSS was taken from here */
+/* https://dev.to/thormeier/use-your-i-moon-gination-lets-build-a-moon-phase-visualizer-with-css-and-js-aih */
+.sphere {
+  border-radius: 100%;
+  width: 120px;
+  height: 120px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.hemisphere {
+  width: 51%;
+  height: 100%;
+}
+
+.light {
+  background-color: #fbce44;
+}
+
+.dark {
+  background-color: hsl(286 100% 0%);
+}
+
+.divider,
+.divider:after {
+  top: 0;
+  left: 0;
+  width: 120px;
+  height: 120px;
+  position: absolute;
+  border-radius: 100%;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+.divider {
+  background-color: hsl(286 100% 0%);
+  /* Dark */
+}
+
+.divider:after {
+  content: '';
+  background-color: #fbce44;
+  /* Light */
+  transform: rotateY(180deg);
+}
+
+.char-container {
+  height: 280px;
+  display: flex;
+}
+
+.align-end {
+  align-items: end;
+}
+
+.link {
+  text-decoration: none;
+  color: white;
+}
+
+.link:hover {
+  color: #fbce44;
+}
+
+.menu {
+  width: 100%;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: absolute;
+  top: 24px;
+  left: 0;
+}
+
+.subtitle {
+  font-size: 24px;
+}
+
+/* ~~~~~~~~~~~~~~ */
+/* No-JS Fallback */
+/* ~~~~~~~~~~~~~~ */
+#nojs-fallback {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  text-align: center;
+  padding: 2rem;
+  color: white;
+  font-family: Georgia, serif;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  background-color: hsl(217, 95%, 23%);
+}
+
+.title-fallback {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  font-size: 80px;
+}
+
+/* ~~~~~~~~~ */
+/* Menu Page */
+/* ~~~~~~~~~ */
+
+#menu-page {
+  background-color: hsl(217, 95%, 23%);
+  height: 100%;
+  color: white;
+  padding: 12px;
+}
+
+.home-button:hover {
+  color: #fbce44;
+}
+
+.home-button {
+  font-size: 40px;
+}
+
+.menu-subtitle {
+  font-size: 42px;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-item {
+  display: flex;
+  justify-content: space-between;
+  width: 360px;
+  font-size: 24px;
+}
+
+.english-item {
+  font-size: 20px;
+  margin-bottom: 16px;
 }

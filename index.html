@@ -1,15 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js">
+<html lang="jp" class="no-js">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap"
-    rel="stylesheet">
   <title>月ノ農</title>
 
   <script type="module">
@@ -22,7 +17,8 @@
   <!-- fixes an issue on safari where the fallback theme color is incorrect -->
   <meta name="theme-color" content="#f8f8f8" id="meta-theme-color">
 
-  <meta name="keywords" content="design system style default ">
+  <meta name="keywords"
+    content="Cafe tsuki no minori moon's harvest moon night tea coffee shop vegetables cats painting cozy pictures vegan">
   <meta name="description" content="Cafe tsuki no minori moon's harvest moon night tea coffee shop">
   <!-- OpenGraph Meta -->
   <meta property="og:title" content="月ノ農">
@@ -31,124 +27,61 @@
   <meta property="og:image:width" content="400">
   <meta property="og:image:height" content="300">
   <meta property="og:image:alt" content="Tsuki no Minori">
-  <meta property="og:locale" content="en_US">
+  <meta property="og:locale" content="ja_JP">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://designsystem.com">
-  <link rel="canonical" href="https://designsystem.com">
+  <meta property="og:url" content="https://tsukinominori.com">
+  <link rel="canonical" href="https://tsukinominori.com">
 
-  <link rel="icon" href="assets/design-favicon.webp" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="assets/design-favicon.webp">
+  <link rel="icon" href="public/crescent-moon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="public/crescent-moon.svg">
   <meta name="theme-color" content="#FF00FF">
 </head>
 
-<body>
-  <div id="title-container">
-    <h1 class="title">月ノ農</h1>
-  </div>
-  <canvas id="starfield"></canvas>
-  <script>
-    const canvas = document.getElementById('starfield');
-    const ctx = canvas.getContext('2d');
-    let stars = [];
-    let shootingStars = [];
-    let SHOOTING_STAR_CHANCE = 0.002; // ~0.2% chance per frame
+<body translate="no">
+  <main id="main-content">
+    <!-- your normal page -->
+    <a href="menu.html" class="menu link">
+      <span class="menu-text link">メニュー</span>
+      <span class="menu-text link">Menu</span>
+    </a>
+    <div id="title-container">
+      <div class="char-container">
+        <h1 class="title">月</h1>
+      </div>
+      <div class="sphere">
+        <div class="light hemisphere"></div>
+        <div class="dark hemisphere"></div>
+        <div class="divider"></div>
+      </div>
+      <div class="char-container align-end">
+        <h1 class="title">農</h1>
+      </div>
+    </div>
+    <a id="instagram" href="https://www.instagram.com/cafe_tsuki_no_minori/">
+      <img src="public/instagram-logo.svg" />
+    </a>
+    <canvas id="starfield"></canvas>
+  </main>
 
-    const STAR_COUNT = 200;
+  <noscript>
+    <div id="nojs-fallback">
+      <a href="menu.html" class="menu link">
+        <span class="menu-text">メニュー</span>
+        <span class="menu-text">Menu</span>
+      </a>
+      <h1 class="title-fallback">月&nbsp;🌙&nbsp;農</h1>
+      <p class="subtitle">Tsuki no Minori</p>
+    </div>
 
-    function createShootingStar() {
-      shootingStars.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height * 0.5, // only top half of the sky
-        speedX: 4,  // 4-12 px/frame
-        speedY: 2,  // 1-3 px/frame
-        length: Math.random() * 10 + 5, // how long the trail is
-        opacity: 1
-      });
-    }
-
-    function drawShootingStars() {
-      for (let i = 0; i < shootingStars.length; i++) {
-        const star = shootingStars[i];
-
-        star.length += 1.4
-
-        ctx.beginPath();
-        ctx.moveTo(star.x, star.y);
-        ctx.lineTo(star.x - star.length, star.y - star.length / 2);
-        ctx.strokeStyle = `rgba(255, 255, 255, ${star.opacity})`;
-        ctx.lineWidth = 2;
-        ctx.stroke();
-
-        // Update position
-        star.x += star.speedX;
-        star.y += star.speedY;
-        star.opacity -= 0.01; // fade out
-
-        // Remove if invisible
-        if (star.opacity <= 0) {
-          shootingStars.splice(i, 1);
-          i--; // adjust index since we removed one
-        }
+    <style>
+      /* If JS is disabled, hide the main content */
+      #main-content {
+        display: none;
       }
-    }
+    </style>
+  </noscript>
 
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-
-    function initStars() {
-      stars = [];
-      for (let i = 0; i < STAR_COUNT; i++) {
-        stars.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          radius: Math.random() * 1.5 + 0.5,
-          alpha: Math.random(),
-          twinkleSpeed: Math.random() * 0.00001 + 0.005
-        });
-      }
-    }
-
-    function drawStars() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      for (let star of stars) {
-        ctx.beginPath();
-        ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 255, 255, ${star.alpha})`;
-        ctx.fill();
-
-        star.alpha += star.twinkleSpeed;
-        if (star.alpha <= 0 || star.alpha >= 1) {
-          star.twinkleSpeed = -star.twinkleSpeed;
-        }
-      }
-
-      // Maybe spawn a shooting star
-      if (Math.random() < SHOOTING_STAR_CHANCE) {
-        createShootingStar();
-      }
-
-      drawShootingStars()
-    }
-
-
-    function animate() {
-      drawStars();
-      requestAnimationFrame(animate);
-    }
-
-    window.addEventListener('resize', () => {
-      resizeCanvas();
-      initStars();
-    });
-
-    // initialize
-    resizeCanvas();
-    initStars();
-    animate();
-  </script>
+  <script type="module" src="js/canvas.js"></script>
 </body>
 
 </html>
